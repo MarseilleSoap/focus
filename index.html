@@ -30,7 +30,7 @@
 <body>
 <div id="root"></div>
 
-<!-- Caricamento delle librerie da server ultra-veloci (unpkg) senza conflitti -->
+<!-- Caricamento delle librerie da server esterni affidabili -->
 <script crossorigin src="https://unpkg.com"></script>
 <script crossorigin src="https://unpkg.com"></script>
 <script crossorigin src="https://unpkg.com"></script>
@@ -100,7 +100,7 @@ function App() {
         <div>
           <h3 style={{margin: '0 0 14px 0', fontSize: '14px', color: 'var(--muted)', fontWeight: '600', letterSpacing: '0.5px'}}>SELEZIONA ALLENAMENTO</h3>
           {PROGRAMMA_DIEGO.map((prog, idx) => (
-            <div key={idx} class="card flex-between" style={{cursor: 'pointer'}} onClick={() => setSchedaSelezionata(idx)}>
+            <div key={idx} className="card flex-between" style={{cursor: 'pointer'}} onClick={() => setSchedaSelezionata(idx)}>
               <div>
                 <h4 style={{margin: '0 0 4px 0', fontSize: '16px', fontWeight: '600'}}>{prog.giorno}</h4>
                 <p style={{margin: 0, fontSize: '13px', color: 'var(--muted)'}}>{prog.esercizi.length} esercizi</p>
@@ -111,14 +111,14 @@ function App() {
         </div>
       ) : (
         <div>
-          <button class="btn" style={{marginBottom: '16px'}} onClick={() => setSchedaSelezionata(null)}>
+          <button className="btn" style={{marginBottom: '16px'}} onClick={() => setSchedaSelezionata(null)}>
             <Icon name="x" size={14} /> Chiudi scheda
           </button>
           <h2 style={{margin: '0 0 16px 0', fontSize: '18px', fontWeight: '700', color: 'var(--red)'}}>{PROGRAMMA_DIEGO[schedaSelezionata].giorno}</h2>
           
           <div>
             {PROGRAMMA_DIEGO[schedaSelezionata].esercizi.map((es, esIdx) => (
-              <div key={esIdx} class="card">
+              <div key={esIdx} className="card">
                 <div style={{marginBottom: '12px'}}>
                   <h4 style={{margin: '0 0 2px 0', fontSize: '15px', fontWeight: '600'}}>{es.nome}</h4>
                   <p style={{margin: 0, fontSize: '12px', color: 'var(--muted)'}}>{es.target}</p>
@@ -129,11 +129,11 @@ function App() {
                 {[0, 1, 2, 3].map((setIdx) => {
                   const datiSet = (storicoCarichi[es.nome] && storicoCarichi[es.nome][setIdx]) || {};
                   return (
-                    <div key={setIdx} class="set-row">
+                    <div key={setIdx} className="set-row">
                       <div style={{textAlign: 'center', fontSize: '13px', color: 'var(--muted)', fontWeight: 'bold'}}>{setIdx + 1}</div>
-                      <input type="number" step="0.5" placeholder="--" class="input-field" value={datiSet.kg || ""} onChange={(e) => salvaDatoSet(es.nome, setIdx, 'kg', e.target.value)} />
-                      <input type="number" placeholder="--" class="input-field" value={datiSet.rep || ""} onChange={(e) => salvaDatoSet(es.nome, setIdx, 'rep', e.target.value)} />
-                      <button onClick={() => salvaDatoSet(es.nome, setIdx, 'fatto', !datiSet.fatto)} class="btn" style={{padding: '6px', width: '100%', justifyContent: 'center', background: datiSet.fatto ? 'var(--red)' : '#101012', borderColor: datiSet.fatto ? 'var(--red)' : 'var(--line)'}}>
+                      <input type="number" step="0.5" placeholder="--" className="input-field" value={datiSet.kg || ""} onChange={(e) => salvaDatoSet(es.nome, setIdx, 'kg', e.target.value)} />
+                      <input type="number" placeholder="--" className="input-field" value={datiSet.rep || ""} onChange={(e) => salvaDatoSet(es.nome, setIdx, 'rep', e.target.value)} />
+                      <button onClick={() => salvaDatoSet(es.nome, setIdx, 'fatto', !datiSet.fatto)} className="btn" style={{padding: '6px', width: '100%', justifyContent: 'center', background: datiSet.fatto ? 'var(--red)' : '#101012', borderColor: datiSet.fatto ? 'var(--red)' : 'var(--line)'}}>
                         <Icon name="check" size={14} color={datiSet.fatto ? '#fff' : 'var(--muted)'} />
                       </button>
                     </div>
